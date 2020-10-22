@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <img src={image} className="card-img-top" alt="Mehdi_Barwaki" />
+        <img src={image} className="card-img-top" alt="Taher_Arfaoui" />
         <p className="conterStyle">{this.state.counter} seconds since componentDidMount</p>        
           {this.state.hidden ? (
             <div className="HiddenDiv">
