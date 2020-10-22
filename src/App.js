@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import image from "./profil.png";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      counter:0,
+      fullName: "Taher Arfaoui",
+      bio: " Software Engineer, 27 years old ",
+      profession: " Freelance Developper ",
+      img: image,
+      hidden: false,
+    };
+  }
+  ShowHiddenElement() {
+    this.setState({
+      counter:0,
+      hidden: !this.state.hidden,
+    });
+  }
+  
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      this.setState({ counter: this.state.counter + 1 })
+      // }
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+        <img src={image} className="card-img-top" alt="Mehdi_Barwaki" />
+        <p className="conterStyle">{this.state.counter} seconds since componentDidMount</p>        
+          {this.state.hidden ? (
+            <div className="HiddenDiv">
+              <h2> {this.state.fullName}</h2>
+              <h3>Bio : {this.state.bio} </h3>
+              <h3>Profession : {this.state.profession} </h3>
+            </div>
+          ) : null}
+          <div className="date-range">
+            <input
+              type="submit"
+              value="Search"
+              onClick={() => this.ShowHiddenElement()}
+            />
+          </div>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
